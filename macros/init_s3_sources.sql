@@ -13,7 +13,8 @@
                 C_MKTSEGMENT    LowCardinality(String),
                 C_COMMENT       String   
         )
-        ENGINE = S3(\'https://storage.yandexcloud.net/otus-dwh/tpch-dbgen-1g/customer.tbl\', \'CustomSeparated\')
+        -- ENGINE = S3(\'https://storage.yandexcloud.net/otus-dwh/tpch-dbgen-1g/customer.tbl\', \'CustomSeparated\')
+        ENGINE = S3(\'https://storage.yandexcloud.net/ch-data-course/customer.tbl\', \'CustomSeparated\')
         SETTINGS
             format_custom_field_delimiter=\'|\'
             ,format_custom_escaping_rule=\'CSV\'
