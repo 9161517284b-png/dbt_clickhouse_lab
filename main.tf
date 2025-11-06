@@ -8,17 +8,19 @@ terraform {
 }
 
 provider "yandex" {
+  token = "y0__xCNose6BhjB3RMgupvlhRUw4rCDrQi7jEhkGBmEDDWPK9GJQQBaWrmvIA"
 }
 
 
 resource "yandex_mdb_clickhouse_cluster" "clickhouse_starschema" {
+  folder_id               = "b1g4559kehqpg3i1fu6p"
   name                    = "clickhouse_starschema"
   environment             = "PRESTABLE"
   network_id              = yandex_vpc_network.default_network.id
   sql_database_management = true
   sql_user_management     = true
   admin_password          = var.clickhouse_password
-  version                 = "25.5"
+  version                 = "25.9"
 
   clickhouse {
     resources {
@@ -137,7 +139,7 @@ resource "yandex_mdb_clickhouse_cluster" "clickhouse_starschema" {
 
   host {
     type             = "CLICKHOUSE"
-    zone             = "ru-central1-b"
+    zone             = "ru-central1-a"
     subnet_id        = yandex_vpc_subnet.foo.id
     assign_public_ip = true
   }
@@ -153,8 +155,11 @@ resource "yandex_mdb_clickhouse_cluster" "clickhouse_starschema" {
 
 resource "yandex_vpc_network" "default_network" {}
 
+
 resource "yandex_vpc_subnet" "foo" {
-  zone           = "ru-central1-b"
+  zone           = "ru-central1-a"
   network_id     = yandex_vpc_network.default_network.id
   v4_cidr_blocks = ["10.5.0.0/24"]
+  folder_id      = "b1g4559kehqpg3i1fu6p"
 }
+
