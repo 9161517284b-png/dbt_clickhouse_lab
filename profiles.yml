@@ -40,4 +40,10 @@
         verify: false
         secure: true
         sslrootcert: /root/YandexRootCA.pem
+      ci:
+        type: clickhouse
+        host: clickhouse
+        port: 8123
+        schema: default
+        threads: 4
     target: dev
